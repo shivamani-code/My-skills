@@ -1,0 +1,16 @@
+/* split-letter reveal: letters rise out of a mask, staggered by --i */
+.reveal { overflow: hidden; display: inline-block; line-height: .9; }
+.reveal .ch { display: inline-block; transform: translateY(110%) rotate(8deg); opacity: 0;
+  transition: transform .9s cubic-bezier(.16,1,.3,1), opacity .9s; transition-delay: calc(var(--i) * 45ms); }
+.reveal.in .ch { transform: none; opacity: 1; }
+
+/* depth field: the stage is the camera */
+.df-stage { position: absolute; inset: 0; perspective: 700px; perspective-origin: 50% 45%;
+  pointer-events: none; overflow: hidden; } /* no preserve-3d here: it would be flattened by overflow */
+.df-word { position: absolute; top: 50%; white-space: nowrap; font-weight: 800; letter-spacing: -.04em;
+  font-size: clamp(64px, 22vw, 240px); color: #fff; will-change: transform, opacity;
+  text-shadow: 0 0 40px rgba(255,170,80,.35); }
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal .ch { transition: none; transform: none; opacity: 1; }
+}
